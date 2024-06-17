@@ -5,3 +5,4 @@ nest_asyncio
 llama-index
 transformers
 torch
+nest_asyncio
