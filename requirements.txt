@@ -1,3 +1,7 @@
 altair
 pandas
 streamlit
+nest_asyncio
+llama-index
+transformers
+torch
