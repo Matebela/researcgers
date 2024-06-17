@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import nest_asyncio
-from llama_index.llms.databricks import Databricks
+from llama_index.databricks import Databricks  # Update this line if the path is different
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core import Settings
 
@@ -33,7 +33,6 @@ Settings.embed_model = embed_model
 
 st.write("Models initialized successfully.")
 
-
 # File uploader for research papers
 uploaded_files = st.file_uploader("Upload Research Papers", accept_multiple_files=True, type=["pdf"])
 
@@ -60,8 +59,6 @@ if uploaded_files:
         st.write(f"Parsed content from {uploaded_file.name}:")
         for doc in docs:
             st.write(doc.text)
-
-
 
 # Convert papers to Tools
 if uploaded_files:
@@ -93,7 +90,6 @@ if uploaded_files:
         vector_query_tool = get_doc_tools(uploaded_file.name, uploaded_file.name)
         st.write(f"Vector query tool for {uploaded_file.name} is ready to use.")
 
-
 # Query input and response display
 if uploaded_files:
     query = st.text_input("Enter your query:")
@@ -103,8 +99,6 @@ if uploaded_files:
             response = vector_query_tool(query)
             st.write(f"Response for {uploaded_file.name}:")
             st.write(response)
-
-
 
 # Setup an agent over the uploaded papers
 if uploaded_files:
@@ -131,4 +125,3 @@ if uploaded_files:
         agent_response = agent.query(agent_query)
         st.write("Agent response:")
         st.write(agent_response)
-
